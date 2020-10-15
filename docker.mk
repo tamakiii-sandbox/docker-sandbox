@@ -3,7 +3,7 @@
 PREFIX := tamakiii-sandbox/docker-sandbox
 DIR := $(realpath $(dir $(firstword $(MAKEFILE_LIST))))
 TYPES := $(patsubst $(basename $(DIR))/%.dockerfile,%,$(wildcard $(DIR)/*.dockerfile))
-TARGETS := $(shell echo $(wildcard $(DIR)/*.dockerfile) | xargs grep -e 'FROM' -e 'AS' | awk '{ print $$4 }')
+TARGETS := $(shell echo $(wildcard $(DIR)/*.dockerfile) | xargs grep -e '^FROM' -e 'AS' | awk '{ print $$4 }')
 
 setup: \
 	dependencies
